@@ -1,0 +1,405 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+/* ============================= */
+/* Game Promo Theme Enhancements */
+/* ============================= */
+
+/* Theme variables */
+:root {
+  /* Palette fournie (RPG gobelin) */
+  --bg: #1e1e2f; /* noir acier */
+  --bg-2: #141421; /* dérivé plus sombre pour le dégradé */
+  --grid: rgba(241, 196, 15, 0.06); /* grille douce, or ancien */
+  --accent: #c0392b; /* rouge sang */
+  --accent-2: #f1c40f; /* or ancien */
+  --text: #ecf0f1; /* gris clair magique */
+  --muted: rgba(236, 240, 241, 0.75);
+  --card: #23233a;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+body {
+  min-height: 100vh;
+  background-color: #1e1e2f;
+  color: var(--text);
+}
+
+/* Subtle animated grid background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px;
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 0, 0, 0.55),
+    transparent 70%
+  );
+  animation: drift 30s linear infinite;
+  pointer-events: none;
+}
+
+/* Hero header background (image only via CSS) */
+.header-video {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: url("/assets/img/background.png") center/cover no-repeat;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  filter: brightness(2);
+}
+
+/* Layout tweaks */
+section {
+  gap: 1.25rem;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+/* Top info pills */
+section ul {
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+}
+
+section ul li {
+  color: var(--muted);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  position: relative;
+}
+
+section ul li + li::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.5);
+}
+
+/* Heading + text */
+h1 {
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    var(--accent) 40%,
+    var(--accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(192, 57, 43, 0.35),
+    0 0 40px rgba(241, 196, 15, 0.22);
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+p {
+  max-width: min(70ch, 90vw);
+  text-align: center;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.7;
+}
+
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255, 255, 255, 0.6);
+  --animation-color: #f1c40f;
+  --fs-size: 2em;
+
+  position: relative;
+  display: inline-flex; /* flex pour centrer le contenu */
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 2rem; /* espace interne = agrandit le bouton */
+  min-width: 250px; /* largeur minimale */
+  min-height: 80px; /* hauteur minimale */
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.text-container {
+  font-family: "Jacquard 24", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hover-text,
+.actual-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover-text {
+  box-sizing: border-box;
+  color: var(--animation-color);
+  width: 0%;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color));
+}
+
+.button .actual-text {
+  transition: opacity 0.3s ease;
+}
+
+.button:hover .actual-text {
+  opacity: 0;
+}
+
+/* Micro-interactions */
+section ul:hover li {
+  color: #cdd3e3;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .header-video {
+    height: 52vh;
+  }
+  section {
+    gap: 0.85rem;
+  }
+}
+
+/* Animations */
+@keyframes drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 60px 60px, 60px 60px;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 16px rgba(192, 57, 43, 0.25),
+      0 0 28px rgba(241, 196, 15, 0.18);
+  }
+  50% {
+    text-shadow: 0 0 28px rgba(192, 57, 43, 0.45),
+      0 0 48px rgba(241, 196, 15, 0.35);
+  }
+}
+
+/* ============================================= */
+/* Hero content container (title + paragraph)    */
+/* Without changing HTML: structural selectors   */
+/* ============================================= */
+
+/* The wrapper that contains H1 + paragraph block */
+section > div:nth-of-type(2) {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+  width: min(100%, 1100px);
+  margin-inline: auto;
+  padding: clamp(16px, 4vw, 32px);
+  background: linear-gradient(180deg, #ffffff0f, rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(241, 196, 15, 0.22);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 0 30px rgba(241, 196, 15, 0.06);
+}
+
+/* Gold ornament bar */
+section > div:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+  filter: drop-shadow(0 0 8px rgba(241, 196, 15, 0.6));
+}
+
+/* Subtle corner fangs (goblin vibe) */
+
+/* Inner blocks (div for h1 and div for p) */
+section > div:nth-of-type(2) > div {
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
+}
+
+/* Fine tune title spacing inside the container */
+section > div:nth-of-type(2) h1 {
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(241, 196, 15, 0.25),
+    0 0 22px rgba(192, 57, 43, 0.25);
+}
+
+/* Paragraph styling with drop-cap */
+section > div:nth-of-type(2) p {
+  padding-inline: clamp(6px, 2vw, 12px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  section > div:nth-of-type(2) {
+    margin-top: 0;
+    padding: 16px;
+  }
+  section > div:nth-of-type(2)::before {
+    width: 60%;
+  }
+  section > div:nth-of-type(2) p::first-letter {
+    font-size: 2.2em;
+  }
+}
